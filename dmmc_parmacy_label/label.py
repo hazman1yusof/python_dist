@@ -5,7 +5,7 @@ import win32print,win32api
 import ConfigParser
 
 width=101.6 * 2.8346456693
-height=50.8 * 2.8346456693
+height=48.26 * 2.8346456693
 
 c = canvas.Canvas("label.pdf", pagesize=(width,height),bottomup = 1)
 config = ConfigParser.RawConfigParser()
@@ -56,15 +56,16 @@ def output(c,section):
         elif(key == 'addinstruction'):
             c.setFont("Helvetica-Bold",8)
             yline=yline-10
-            if(len(val)>47):
-                c.drawString (xline, yline, val[:47])
-                val = val[47:]
+            if(len(val)>32):
+                c.drawString (xline, yline, val[:32])
+                val = val[32:]
                 yline=yline-10
         elif(key == 'days'):
             c.setFont("Helvetica",8)
+            xline=190
         elif(key == 'quantity'):
             c.setFont("Helvetica",8)
-            xline=140
+            xline=190
         else:
             c.setFont("Helvetica",8)
         c.drawString (xline, yline, val)

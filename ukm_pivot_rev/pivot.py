@@ -2,6 +2,11 @@ import ConfigParser
 import mysql.connector
 
 
+def date(string):
+    date_ = string.split('/')
+    date = date_[2]+'-'+date_[1]+'-'+date_[0]
+    return date
+
 db_conf = ConfigParser.RawConfigParser()
 db_conf.read('db.ini')
 db_conf_sect = db_conf.sections()
@@ -51,6 +56,16 @@ print('deleted month - '+month+' year - '+year+' datetype - '+datetype)
 for section in configlist:
     list_ = []
     for (key, val) in config.items(section):
+        if (key == 'regdate'):
+            if (val.strip() == ""):
+                val = None
+            else:
+                val = date(val)
+        elif (key == 'disdate'):
+            if (val.strip() == ""):
+                val = None
+            else:
+                val = date(val)
         list_.append(val)
 
     tuple_ = tuple(list_)
