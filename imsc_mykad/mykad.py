@@ -1,29 +1,29 @@
 import win32com.client, datetime
-obj = win32com.client.Dispatch('mykadproweb.mykadproweb.jpn')
-strRet = obj.BeginJPN('Feitian SCR301 0')
+myobj_hazman = win32com.client.Dispatch('mykadproweb.mykadproweb.jpn')
+mystrRet_hazman = myobj_hazman.BeginJPN('Feitian SCR301 0')
 open('mykad.txt', 'w').close()
-if strRet == '0':
-    data = obj.getIDNum() + '|'
-    newdob = datetime.datetime.strptime(obj.getBirthDate(), '%Y-%m-%d').strftime('%d-%m-%Y')
-    data += newdob + '|'
-    data += obj.getBirthPlace() + '|'
-    data += obj.getGMPCName() + '|'
-    data += obj.getOldIDNum() + '|'
-    data += obj.getReligion() + '|'
-    data += obj.getGender() + '|'
-    data += obj.getRace() + '|'
-    data += obj.getAddress1() + '|'
-    data += obj.getAddress2() + '|'
-    data += obj.getAddress3() + '|'
-    data += obj.getPostcode() + '|'
-    data += obj.getCity() + '|'
-    data += obj.getState() + '|'
-    obj.getPhoto('myphotov1.jpg')
-    print data
+if mystrRet_hazman == '0':
+    mydata_hazman = myobj_hazman.getIDNum() + '|'
+    newdob = datetime.datetime.strptime(myobj_hazman.getBirthDate(), '%Y-%m-%d').strftime('%d-%m-%Y')
+    mydata_hazman += newdob + '|'
+    mydata_hazman += myobj_hazman.getBirthPlace() + '|'
+    mydata_hazman += myobj_hazman.getGMPCName() + '|'
+    mydata_hazman += myobj_hazman.getOldIDNum() + '|'
+    mydata_hazman += myobj_hazman.getReligion() + '|'
+    mydata_hazman += myobj_hazman.getGender() + '|'
+    mydata_hazman += myobj_hazman.getRace() + '|'
+    mydata_hazman += myobj_hazman.getAddress1() + '|'
+    mydata_hazman += myobj_hazman.getAddress2() + '|'
+    mydata_hazman += myobj_hazman.getAddress3() + '|'
+    mydata_hazman += myobj_hazman.getPostcode() + '|'
+    mydata_hazman += myobj_hazman.getCity() + '|'
+    mydata_hazman += myobj_hazman.getState() + '|'
+    myobj_hazman.getPhoto('myphotov1.jpg')
+    print mydata_hazman
     with open('mykad.txt', 'r+') as (f):
-        f.write(data)
+        f.write(mydata_hazman)
 else:
     with open('mykad.txt', 'r+') as (f):
-        f.write(strRet)
-        print strRet
-obj.EndJPN()
+        f.write(mystrRet_hazman)
+        print mystrRet_hazman
+myobj_hazman.EndJPN()

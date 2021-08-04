@@ -14,7 +14,7 @@ configlist=config.sections()
 
 def output(c,section):
     c.translate(mm,mm)
-    yline=85
+    yline=95
     xline=40
     for (key, val) in config.items(section):
         if(key == 'mrn'):
@@ -56,9 +56,9 @@ def output(c,section):
         elif(key == 'addinstruction'):
             c.setFont("Helvetica-Bold",8)
             yline=yline-10
-            if(len(val)>32):
-                c.drawString (xline, yline, val[:32])
-                val = val[32:]
+            if(len(val)>47):
+                c.drawString (xline, yline, val[:47])
+                val = val[47:]
                 yline=yline-10
         elif(key == 'days'):
             c.setFont("Helvetica",8)

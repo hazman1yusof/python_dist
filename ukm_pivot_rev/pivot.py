@@ -1,6 +1,6 @@
 import ConfigParser
 import mysql.connector
-
+import requests
 
 def date(string):
     date_ = string.split('/')
@@ -78,3 +78,9 @@ for section in configlist:
 
 mydb.commit()
 mycursor.close()
+
+url = 'https://www.ukmsc.com.my/eis/public/store_dashb?month='+month+'&year='+year
+headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
+result = requests.get(url, headers=headers)
+
+print('dashboard updated form month '+month+' and year '+year)
