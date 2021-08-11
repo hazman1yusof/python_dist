@@ -67,11 +67,11 @@ def output(c,section):
             c.setFont("Helvetica",8)
             xline=185
         elif(key == 'newic'):
-            yline=yline-13
-            c.setFont("Helvetica",8)
+            yline=yline-10
+            c.setFont("Helvetica",6)
         elif(key == 'bed'):
             c.setFont("Helvetica",8)
-            xline=145
+            xline=155
         else:
             c.setFont("Helvetica",8)
         c.drawString (xline, yline, val)
