@@ -6,7 +6,7 @@ import array
 import os.path
 
 
-array_all = ['diagnose','pathealth','pathistory','patexam']
+array_all = ['diagnose','pathealth','pathistory','patexam','charges']
 
 my_all = {}
 
@@ -25,6 +25,9 @@ for ini_name in array_all:
 
         my_all[ini_name] = my_dict
 
+# print my_all
+
+
 url = 'https://www.medicsoft.com.my/webbridge/public/diagnose'
 data = my_all
 header = {
@@ -34,6 +37,7 @@ header = {
         "Accept-Language": "en-US,en;q=0.8",
         "User-Agent": "Mozilla/5.0 (platform; rv:geckoversion) Gecko/geckotrail Firefox/firefoxversion",
     }
+
 
 requests.post(url,data=json.dumps(data),headers = header,timeout=2.0)
 
