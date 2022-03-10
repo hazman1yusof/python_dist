@@ -29,13 +29,13 @@ mycursor = mydb.cursor()
 f = open("mrnepis.txt", "r")
 mrnepis = f.read().strip("|").split("|")
 
-query = ("SELECT mrn, episno, chgcode, quantity, trxdate, trxtime, isudept, lastuser, lastupdate, auditno FROM chargetrx "
+query = ("SELECT mrn, episno, chgcode, quantity, trxdate, trxtime, isudept, lastuser, lastupdate, idno FROM chargetrx "
          "WHERE mrn = %s AND episno = %s")
 
 mycursor.execute(query, mrnepis)
 
 f = open("charges.txt", "w")
-for (mrn, episno, chgcode, quantity, trxdate, trxtime, isudept, lastuser, lastupdate, auditno) in mycursor:
+for (mrn, episno, chgcode, quantity, trxdate, trxtime, isudept, lastuser, lastupdate, idno) in mycursor:
   f.write(str(mrn)+
     "|"+str(episno)+
     "|"+str(chgcode)+
@@ -45,7 +45,7 @@ for (mrn, episno, chgcode, quantity, trxdate, trxtime, isudept, lastuser, lastup
     "|"+str(isudept)+
     "|"+str(lastuser)+
     "|"+str(datetime.datetime.strptime(str(lastupdate), '%Y-%m-%d').strftime('%d/%m/%Y'))+
-    "|"+str(auditno)
+    "|"+str(idno)
     )
   f.write("\n")
 

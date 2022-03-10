@@ -42,4 +42,6 @@ header = {
 
 post = requests.post(url,data=json.dumps(data),headers = header).text
 
-print(post)
+f = open("result.txt", "w")
+f.write(post)
+f.close()

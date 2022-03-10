@@ -6,7 +6,15 @@ import array
 import os.path
 
 
-array_all = ['diagnose','pathealth','pathistory','patexam','charges']
+url = 'https://www.medicsoft.com.my/webbridge/public/diagnose'
+db_conf_url = ConfigParser.RawConfigParser()
+db_conf_url.read('url.ini')
+
+for (key, val) in db_conf_url.items('DATA1'):
+    if(key == 'url'):
+        url=val
+
+array_all = ['diagnose','pathealth','pathistory','patexam','charges','episode','patmast']
 
 my_all = {}
 
@@ -28,7 +36,6 @@ for ini_name in array_all:
 # print my_all
 
 
-url = 'https://www.medicsoft.com.my/webbridge/public/diagnose'
 data = my_all
 header = {
         'Accept' : 'application/json', 
@@ -39,8 +46,8 @@ header = {
     }
 
 
-requests.post(url,data=json.dumps(data),headers = header,timeout=2.0)
+# requests.post(url,data=json.dumps(data),headers = header,timeout=2.0)
 
-# post = requests.post(url,data=json.dumps(data),headers = header).text
+post = requests.post(url,data=json.dumps(data),headers = header).text
 
-# print(post)
+print(post)
