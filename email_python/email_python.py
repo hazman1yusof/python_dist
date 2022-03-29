@@ -31,8 +31,9 @@ for ini_name in array_all:
         for section in configlist:
             my_dict[section] = db_conf.items(section)
             attch = db_conf.items(section)[6][1]
-            if(attch not in array_attach):
-                array_attach.append(attch)
+            if(attch.strip()):
+                if(attch not in array_attach):
+                    array_attach.append(attch)
 
         my_all[ini_name] = my_dict
 
@@ -44,7 +45,6 @@ for attach in array_attach:
     file = open(attach,'rb')
     ftp.storbinary('STOR %s'%attach, file)
     file.close()
-
 
 data = my_all
 header = {

@@ -46,8 +46,8 @@ header = {
     }
 
 
-# requests.post(url,data=json.dumps(data),headers = header,timeout=2.0)
+requests.post(url,data=json.dumps(data),headers = header,timeout=2.0)
 
-post = requests.post(url,data=json.dumps(data),headers = header).text
+# post = requests.post(url,data=json.dumps(data),headers = header).text
 
-print(post)
+# print(post)
