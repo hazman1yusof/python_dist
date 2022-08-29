@@ -4,6 +4,9 @@ import reportlab.rl_settings
 import win32print,win32api
 import ConfigParser
 
+import subprocess
+import os
+
 width=80 * 2.8346456693
 height=45 * 2.8346456693
 
@@ -85,3 +88,9 @@ GSPRINT_PATH = "GSPRINT\\gsprint.exe"
 
 currentprinter = win32print.GetDefaultPrinter()
 win32api.ShellExecute(0, 'open', GSPRINT_PATH, '-ghostscript "'+GHOSTSCRIPT_PATH+'" -printer "'+currentprinter+'" "label.pdf"', '.', 0)  # lint:ok
+
+# pdf_file = "label.bat"
+# pdf_file_path = os.path.join(os.path.abspath(pdf_file))
+
+
+# p = subprocess.Popen(pdf_file_path, shell=True, stdout = subprocess.PIPE)
