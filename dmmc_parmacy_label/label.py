@@ -4,6 +4,9 @@ import reportlab.rl_settings
 import win32print,win32api
 import configparser
 
+import subprocess
+import os
+
 width=101.6 * 2.8346456693
 height=48.26 * 2.8346456693
 
@@ -14,34 +17,35 @@ configlist=config.sections()
 
 def output(c,section):
     c.translate(mm,mm)
-    yline=95
-    xline=40
+    yline=85
+    xline=20
     for (key, val) in config.items(section):
         if(key == 'mrn'):
             yline=yline-10
             c.setFont("Helvetica",8)
         elif(key == 'date'):
-            c.setFont("Helvetica",8)
-            xline=140
+            c.setFont("Helvetica-Bold",8)
+            xline=190
         elif(key == 'name'):
+            c.setFont("Helvetica-Bold",8)
             yline=yline-10
-            if(len(val)>47):
-                c.drawString (xline, yline, val[:47])
-                val = val[47:]
+            if(len(val)>80):
+                c.drawString (xline, yline, val[:80])
+                val = val[80:]
                 yline=yline-10
         elif(key == 'description'):
             c.setFont("Helvetica-Bold",8)
             yline=yline-10
-            if(len(val)>47):
-                c.drawString (xline, yline, val[:47])
-                val = val[47:]
+            if(len(val)>80):
+                c.drawString (xline, yline, val[:80])
+                val = val[80:]
                 yline=yline-10
         elif(key == 'generic'):
             c.setFont("Helvetica",8)
             yline=yline-10
-            if(len(val)>47):
-                c.drawString (xline, yline, val[:47])
-                val = val[47:]
+            if(len(val)>80):
+                c.drawString (xline, yline, val[:80])
+                val = val[80:]
                 yline=yline-10
         elif(key == 'freq'):
             c.setFont("Helvetica",8)
@@ -49,16 +53,16 @@ def output(c,section):
         elif(key == 'instruction'):
             c.setFont("Helvetica",8)
             yline=yline-10
-            if(len(val)>47):
-                c.drawString (xline, yline, val[:47])
-                val = val[47:]
+            if(len(val)>80):
+                c.drawString (xline, yline, val[:80])
+                val = val[80:]
                 yline=yline-10
         elif(key == 'addinstruction'):
             c.setFont("Helvetica-Bold",8)
             yline=yline-10
-            if(len(val)>47):
-                c.drawString (xline, yline, val[:47])
-                val = val[47:]
+            if(len(val)>80):
+                c.drawString (xline, yline, val[:80])
+                val = val[80:]
                 yline=yline-10
         elif(key == 'days'):
             c.setFont("Helvetica",8)
@@ -69,7 +73,7 @@ def output(c,section):
         else:
             c.setFont("Helvetica",8)
         c.drawString (xline, yline, val)
-        xline=40
+        xline=20
 
 for section in configlist:
     output(c,section)
@@ -77,9 +81,14 @@ for section in configlist:
 
 c.save()
 
-GHOSTSCRIPT_PATH = "GHOSTSCRIPT\\bin\\gswin32.exe"
-GSPRINT_PATH = "GSPRINT\\gsprint.exe"
+# GHOSTSCRIPT_PATH = "GHOSTSCRIPT\\bin\\gswin32.exe"
+# GSPRINT_PATH = "GSPRINT\\gsprint.exe"
 
-currentprinter = win32print.GetDefaultPrinter()
+# currentprinter = win32print.GetDefaultPrinter()
 
-win32api.ShellExecute(0, 'open', GSPRINT_PATH, '-ghostscript "'+GHOSTSCRIPT_PATH+'" -printer "'+currentprinter+'" "label.pdf"', '.', 0)  # lint:ok
+# win32api.ShellExecute(0, 'open', GSPRINT_PATH, '-ghostscript "'+GHOSTSCRIPT_PATH+'" -printer "'+currentprinter+'" "label.pdf"', '.', 0)  # lint:ok
+
+pdf_file = "label.bat"
+pdf_file_path = os.path.join(os.path.abspath(pdf_file))
+
+p = subprocess.Popen(pdf_file_path, shell=True, stdout = subprocess.PIPE)
