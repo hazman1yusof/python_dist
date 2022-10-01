@@ -21,6 +21,8 @@ for (key, val) in db_conf.items('DATA1'):
         passwd=val
     elif(key == 'database'):
         database=val
+    elif(key == 'compcode'):
+        compcode=val
 
 mydb = mysql.connector.connect(
     host=host,
@@ -36,7 +38,7 @@ f = open("mrnepis.txt", "r")
 mrnepis = f.read().strip("|").split("|")
 
 query = ("SELECT mrn, episno, chgcode, quantity, trxdate, trxtime, isudept, lastuser, lastupdate, id FROM chargetrx "
-         "WHERE mrn = %s AND episno = %s  AND lastupdate is not null")
+         "WHERE mrn = %s AND episno = %s AND compcode = '"+compcode+"' AND lastupdate is not null")
 
 mycursor.execute(query, mrnepis)
 
