@@ -19,6 +19,7 @@ if mystrRet_hazman == '0':
     mydata_hazman += myobj_hazman.getPostcode + '|'
     mydata_hazman += myobj_hazman.getCity + '|'
     mydata_hazman += myobj_hazman.getState + '|'
+    mydata_hazman += myobj_hazman.getCitizenship + '|'
     # mydata_hazman += myobj_hazman.getPhotoBase64String + '|'
     myobj_hazman.getPhoto('myphotov1.jpg')
     print(mydata_hazman+myobj_hazman.getPhotoBase64String)

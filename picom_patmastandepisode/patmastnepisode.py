@@ -1,4 +1,4 @@
-import ConfigParser
+import configparser
 import mysql.connector
 import datetime
 
@@ -191,7 +191,8 @@ for row in myresult:
     "|"+str('')+
     "|"+str('no')+
     "|"+str('no')+
-    "|"+str('no')
+    "|"+str('no')+
+    "|"+format_date(row['lastarrivaldate'])
     )
     f.write("\n")
 
@@ -324,7 +325,7 @@ for row in debtorm_arr:
     "|"+str(row['address2'] or '')+
     "|"+str(row['address3'] or '')+
     "|"+str(row['address4'] or '')+
-    "|"+str(row['postcode'] or '')+
+    "|"+str(row['postcode'] or '0')+
     "|"+str(row['statecode'] or '')+
     "|"+str(row['countrycode'] or '')+
     "|"+str(row['contact'] or '')+
@@ -336,7 +337,7 @@ for row in debtorm_arr:
     "|"+str(row['recstatus'] or '')+
     "|"+str(row['outamt'] or '0.00')+
     "|"+str(row['depamt'] or '0.00')+
-    "|"+str(row['creditlimit'] or '')+
+    "|"+str(row['creditlimit'] or '0')+
     "|"+str(row['actdebccode'] or '')+
     "|"+str(row['actdebglacc'] or '')+
     "|"+str(row['depccode'] or '')+
@@ -354,12 +355,12 @@ for row in debtorm_arr:
     "|"+str(row['accno'] or '')+
     "|"+str(row['othertel'] or '')+
     "|"+str(row['requestgl'] or '')+
-    "|"+str(row['creditterm'] or '0')+
+    "|"+str(row['creditterm'] or '0.00')+
     "|"+str(row['adduser'] or '')+
     "|"+format_date(row['adddate'])+
     "|"+str(row['coverageip'] or '0.00')+
     "|"+str(row['coverageop'] or '0.00')+
-    "|"+str('0')+
+    "|"+str('0.00')+
     "|"+str('no')
     )
     f.write("\n")
