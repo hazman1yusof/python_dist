@@ -2,7 +2,7 @@ from reportlab.pdfgen import canvas
 from reportlab.lib.units import mm
 import reportlab.rl_settings
 import win32print,win32api
-import ConfigParser
+import configparser
 
 import subprocess
 import os
@@ -11,7 +11,7 @@ width=101.6 * 2.8346456693
 height=48.26 * 2.8346456693
 
 c = canvas.Canvas("label.pdf", pagesize=(width,height),bottomup = 1)
-config = ConfigParser.RawConfigParser()
+config = configparser.RawConfigParser()
 config.read('pharmacy.ini')
 configlist=config.sections()
 

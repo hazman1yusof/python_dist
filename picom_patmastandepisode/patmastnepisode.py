@@ -1,4 +1,4 @@
-import ConfigParser
+import configparser
 import mysql.connector
 import datetime
 
