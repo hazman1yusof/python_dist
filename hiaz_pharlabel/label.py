@@ -14,67 +14,93 @@ configlist=config.sections()
 
 def output(c,section):
     c.translate(mm,mm)
-    yline=90
+    yline=100
     xline=0
     for (key, val) in config.items(section):
-        if(key == 'name'):
+        if(key == 'mrn'):
+            xline=180
+            c.setFont("Helvetica",8)
+            c.drawString (xline, yline, val)
+        elif(key == 'name'):
+            nameskip = 0
             if(len(val)>36):
                 c.drawString (xline, yline, val[:36])
                 val = val[36:]
                 yline=yline-10
+                nameskip = 1
+            c.drawString (xline, yline, val)
         elif(key == 'date'):
             c.setFont("Helvetica",8)
-            c.line(xline, yline-5, xline+185+40, yline-5)
-            xline=185
-            yline=yline-15
-        elif(key == 'description'):
-            c.setFont("Helvetica-Bold",8)
-            if(len(val)>41):
-                c.drawString (xline, yline, val[:41])
-                val = val[41:]
+            xline=180
+            if(nameskip == 0):
                 yline=yline-10
-        elif(key == 'mrn'):
-            xline=172
-            c.setFont("Helvetica",8)
+            c.drawString (xline, yline, val)
+
+            c.line(0, yline-5, 250, yline-5)
+
+        elif(key == 'description'):
+            yline=yline-15
+            c.setFont("Helvetica-Bold",8)
+            if(len(val)>52):
+                c.drawString (xline, yline, val[:52])
+                val = val[52:]
+                yline=yline-10
+            c.drawString (xline, yline, val)
+
         elif(key == 'generic'):
             c.setFont("Helvetica",8)
             yline=yline-10
-            if(len(val)>41):
-                c.drawString (xline, yline, val[:41])
-                val = val[41:]
+            if(len(val)>52):
+                c.drawString (xline, yline, val[:52])
+                val = val[52:]
                 yline=yline-10
+            c.drawString (xline, yline, val)
+
         elif(key == 'freq'):
-            c.setFont("Helvetica",8)
             yline=yline-13
+            c.setFont("Helvetica",8)
+            c.drawString (xline, yline, val)
+        elif(key == 'quantity'):
+            c.setFont("Helvetica",8)
+            xline=180
+            c.drawString (xline, yline, val)
+
         elif(key == 'instruction'):
             c.setFont("Helvetica",8)
             yline=yline-10
-            if(len(val)>41):
-                c.drawString (xline, yline, val[:41])
-                val = val[41:]
+            if(len(val)>36):
+                c.drawString (xline, yline, val[:36])
+                val = val[36:]
                 yline=yline-10
+            c.drawString (xline, yline, val)
+        elif(key == 'unitprice'):
+            c.setFont("Helvetica",8)
+            xline=180
+            c.drawString (xline, yline, val)
+
         elif(key == 'addinstruction'):
             c.setFont("Helvetica-Bold",8)
             yline=yline-13
-            if(len(val)>56):
-                c.drawString (xline, yline, val[:56])
-                val = val[56:]
+            if(len(val)>36):
+                c.drawString (xline, yline, val[:36])
+                val = val[36:]
                 yline=yline-10
-        elif(key == 'days'):
+            c.drawString (xline, yline, val)
+        elif(key == 'totamt'):
             c.setFont("Helvetica",8)
-            xline=185
-        elif(key == 'quantity'):
-            c.setFont("Helvetica",8)
-            xline=185
+            xline=180
+            c.drawString (xline, yline, val)
+
         elif(key == 'newic'):
             yline=yline-10
             c.setFont("Helvetica",6)
+            c.drawString (xline, yline, val)
         elif(key == 'bed'):
-            c.setFont("Helvetica",8)
-            xline=155
-        else:
-            c.setFont("Helvetica",8)
-        c.drawString (xline, yline, val)
+            xline=180
+            c.setFont("Helvetica",6)
+            c.drawString (xline, yline, val)
+        # else:
+        #     c.setFont("Helvetica",8)
         xline=0
 
 for section in configlist:
